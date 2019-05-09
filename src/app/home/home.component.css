@@ -9,7 +9,7 @@
 	cursor:pointer;
 	color: rgb(255, 37, 37);
 	font-size:1rem;
-    padding:8px 15px; 
+    padding:8px 15px;
     outline: none;
     border: 1px solid rgb(255, 37, 37);
     align-self: flex-start;
@@ -24,11 +24,16 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-size:1rem;
-    padding:8px 15px; 
+    padding:8px 15px;
     outline: none;
     border: none;
     align-self: flex-end;
 }
 .buyBtn:hover {
 	filter: brightness(105%)
+}
+
+.buyBtn:disabled {
+  background-color: #CCC;
+  cursor: not-allowed;
 }

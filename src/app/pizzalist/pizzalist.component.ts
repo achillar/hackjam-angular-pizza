@@ -17,15 +17,24 @@ import { Pizza } from "../pizza";
   styleUrls: ["./pizzalist.component.css"]
 })
 export class PizzalistComponent implements OnInit {
-  // @Input() name: string;
+  @Input() pizzas: Pizza[];
   @Output() isAdded = new EventEmitter<boolean>();
+
+
   constructor(private basketService: BasketService) {}
 
-  ngOnInit() {}
-  pizzas = PIZZAS;
-  pizzaList: Pizza[] = [];
+  ngOnInit() {
+
+  }
 
   updateList(pizza: Pizza, addedToTotal: boolean) {
+    if (addedToTotal) {
+      pizza.numberOrdered++;
+      pizza.totalAmountProduct += pizza.price;
+    } else {
+      pizza.numberOrdered--;
+      pizza.totalAmountProduct -= pizza.price;
+    }
     this.basketService.addToTotalAmount(pizza.price, addedToTotal);
     this.isAdded.emit(addedToTotal);
   }
@@ -34,11 +43,15 @@ export class PizzalistComponent implements OnInit {
     // Decrement the number of the ordered pizza
     // the total amount of the selected pizza should be reduced as well
     // call the update list
+    const isIncrement = false;
+    this.updateList(pizza, isIncrement);
   }
 
   incrementNumber(pizza: Pizza) {
     // Increment the number of the ordered pizza
     // the total amount of the selected pizza should be augmented as well
     // call the update list
+    const isIncrement = true;
+    this.updateList(pizza, isIncrement);
   }
 }

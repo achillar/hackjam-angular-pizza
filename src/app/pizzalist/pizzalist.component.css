@@ -15,4 +15,11 @@
     border-radius: 200px;;
     height:30px;
     width: 30px;
+    cursor: pointer;
+}
+
+.btnPizza:disabled {
+  background-color: #AAA;
+  color: #CCC;
+  cursor: not-allowed;
 }
